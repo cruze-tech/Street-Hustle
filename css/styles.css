@@ -37,6 +37,7 @@ body {
     position: relative;
     margin: 0 auto;
     overflow: hidden;
+    padding-bottom: 44px; /* Slightly more than the ad frame height (38px) */
 }
 
 /* TOP BAR */
@@ -675,6 +676,10 @@ body {
     
     .hustle-emoji {
         font-size: 1.8rem;
+    }
+    
+    .game-container {
+        padding-bottom: 48px; /* Extra space for small screens/ad frame */
     }
 }
 
