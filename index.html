@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Street Hustle</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/Street Hustle.png">
+    <link rel="shortcut icon" type="image/png" href="assets/Street Hustle.png">
+    <link rel="apple-touch-icon" href="assets/Street Hustle.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <!-- WELCOME SCREEN -->
+    <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-content">
+            <div class="logo-section">
+                <h1 class="game-title">💰 Street Hustle</h1>
+                <p class="game-subtitle">Build Your Empire from the Streets</p>
+            </div>
+            
+            <div class="welcome-description">
+                <p>Start from washing clothes and work your way up to becoming the ultimate street entrepreneur!</p>
+                <div class="features">
+                    <div class="feature">🧺 Start Simple</div>
+                    <div class="feature">📱 Unlock New Hustles</div>
+                    <div class="feature">🤖 Automate Your Business</div>
+                    <div class="feature">💸 Make Bank</div>
+                </div>
+            </div>
+            
+            <div class="welcome-actions">
+                <button id="start-game" class="start-button">Start Hustling</button>
+                <button id="load-game" class="load-button" style="display: none;">Continue Game</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN GAME -->
+    <div id="game-container" class="game-container" style="display: none;">
+        <!-- TOP HEADER -->
+        <header class="top-bar">
+            <div class="stat-box">
+                <span class="stat-label">CASH</span>
+                <span class="stat-value" id="money-display">UGX 0</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">INCOME</span>
+                <span class="stat-value" id="income-display">UGX 0/s</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">TOTAL EARNED</span>
+                <span class="stat-value" id="total-earnings-display">UGX 0</span>
+            </div>
+        </header>
+
+        <!-- MAIN GAME AREA -->
+        <main id="hustle-grid" class="hustle-grid">
+            <!-- Hustle cards will be dynamically inserted here -->
+        </main>
+
+        <!-- BOTTOM NAVIGATION -->
+        <footer class="bottom-nav">
+            <button id="get-advice" class="nav-button advice-btn">
+                <span class="nav-icon">🤖</span>
+                <span class="nav-label">Advice</span>
+            </button>
+            <button id="total-earnings" class="nav-button earnings-btn">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Stats</span>
+            </button>
+            <button id="exit-game" class="nav-button exit-btn">
+                <span class="nav-icon">🚪</span>
+                <span class="nav-label">Exit</span>
+            </button>
+            <button id="reset-game" class="nav-button reset-btn">
+                <span class="nav-icon">🔄</span>
+                <span class="nav-label">Reset</span>
+            </button>
+        </footer>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="js/logic/gameEngine.js"></script>
+    <script src="js/logic/eventManager.js"></script>
+    <script src="js/logic/adviceService.js"></script>
+    <script src="js/components/HustleCard.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

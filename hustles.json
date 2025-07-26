@@ -1,0 +1,67 @@
+[
+    {
+        "id": "clothing",
+        "name": "Wash Clothes",
+        "description": "Start your entrepreneurial journey by washing clothes for your neighbors. It's honest work that builds character and capital!",
+        "baseIncome": 500,
+        "baseCost": 0,
+        "costMultiplier": 1.15,
+        "automation": {
+            "timer": 1500,
+            "unlockRequirement": 10
+        },
+        "icon": "🧺"
+    },
+    {
+        "id": "airtime",
+        "name": "Sell Airtime",
+        "description": "Everyone needs airtime! Set up a small booth and help people stay connected while earning steady profits.",
+        "baseIncome": 2500,
+        "baseCost": 30000,
+        "costMultiplier": 1.20,
+        "automation": {
+            "timer": 3000,
+            "unlockRequirement": 5
+        },
+        "icon": "📱"
+    },
+    {
+        "id": "charging",
+        "name": "Charge Phones",
+        "description": "Power is precious! Offer phone charging services to people whose devices have died. A modern necessity business.",
+        "baseIncome": 10000,
+        "baseCost": 200000,
+        "costMultiplier": 1.25,
+        "automation": {
+            "timer": 5000,
+            "unlockRequirement": 3
+        },
+        "icon": "🔋"
+    },
+    {
+        "id": "boda",
+        "name": "Boda Boda Ride",
+        "description": "Hit the streets on a motorcycle taxi! Navigate traffic and transport passengers quickly around the city for good money.",
+        "baseIncome": 50000,
+        "baseCost": 1500000,
+        "costMultiplier": 1.3,
+        "automation": {
+            "timer": 8000,
+            "unlockRequirement": 3
+        },
+        "icon": "🏍️"
+    },
+    {
+        "id": "rolex",
+        "name": "Sell Rolex",
+        "description": "The famous Ugandan street food! Roll eggs and vegetables in chapati for hungry customers. A delicious profit maker.",
+        "baseIncome": 250000,
+        "baseCost": 10000000,
+        "costMultiplier": 1.35,
+        "automation": {
+            "timer": 12000,
+            "unlockRequirement": 3
+        },
+        "icon": "🌯"
+    }
+]
