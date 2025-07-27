@@ -16,6 +16,7 @@ function checkForExistingSave() {
 }
 
 function setupWelcomeScreen() {
+    document.body.classList.add('show-welcome');
     document.getElementById('start-game').addEventListener('click', () => {
         localStorage.removeItem('streetHustleSave_v1'); // Start fresh
         startGame();
@@ -30,6 +31,7 @@ function startGame() {
     // Hide welcome screen and show game
     document.getElementById('welcome-screen').style.display = 'none';
     document.getElementById('game-container').style.display = 'flex';
+    document.body.classList.remove('show-welcome');
     
     // Initialize game
     gameEngine = new GameEngine();
