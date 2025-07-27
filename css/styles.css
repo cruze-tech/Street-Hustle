@@ -29,15 +29,14 @@ body {
 .game-container {
     width: 100%;
     max-width: 480px;
-    height: 100vh;
+    min-height: 100vh; /* Allow to grow, don't cut off content */
     background-color: var(--secondary-bg);
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
     position: relative;
     margin: 0 auto;
-    overflow: hidden;
-    padding-bottom: 44px; /* Slightly more than the ad frame height (38px) */
+    padding-bottom: 70px; /* Enough space for both nav and ad frame */
 }
 
 /* TOP BAR */
@@ -222,14 +221,18 @@ body {
 
 /* BOTTOM NAVIGATION */
 .bottom-nav {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: var(--primary-bg);
+    border-top: 2px solid var(--accent-yellow);
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 8px;
     padding: 8px 10px;
-    background-color: var(--primary-bg);
-    flex-shrink: 0;
-    border-top: 2px solid var(--accent-yellow);
-    gap: 8px; /* Increased gap since we have fewer buttons */
 }
 
 .nav-button {
@@ -755,4 +758,15 @@ body {
 
 .hustle-grid::-webkit-scrollbar-thumb:hover {
     background: #e6b400;
+}
+
+/* --- Responsive adjustments for mobile --- */
+@media (max-width: 600px) {
+    .game-container {
+        padding-bottom: 90px; /* More space for nav + ad on small screens */
+    }
+    .bottom-nav {
+        font-size: 0.9rem;
+        min-height: 48px;
+    }
 }
