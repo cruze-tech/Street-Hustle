@@ -30,14 +30,15 @@ body {
 .game-container {
     width: 100%;
     max-width: 480px;
-    height: 100vh; /* Fill viewport for proper flex child sizing */
+    min-height: 100vh;
+    height: auto; /* Allow content to grow */
     background-color: var(--secondary-bg);
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
     position: relative;
     margin: 0 auto;
-    padding-bottom: 100px; /* Enough for nav + ad on all screens */
+    padding-bottom: 120px; /* Space for nav + ad */
 }
 
  /* TOP BAR */
@@ -78,6 +79,7 @@ body {
     flex-direction: column;
     gap: 15px;
     padding-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* HUSTLE CARD */
@@ -227,7 +229,7 @@ body {
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 38px; /* Height of ad frame */
+    bottom: 50px; /* Above ad frame */
     z-index: 100;
     background-color: var(--primary-bg);
     border-top: 2px solid var(--accent-yellow);
@@ -237,8 +239,7 @@ body {
     gap: 8px;
     padding: 10px 8px;
     min-height: 60px;
-    min-width: 0;
-    width: 100vw;
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -670,18 +671,18 @@ body.show-welcome #frame {
         min-width: 0;
     }
     .welcome-content {
-        padding: 30px 20px;
-        margin: 20px;
+        padding: 25px 20px;
+        margin: 10px 0;
     }
     
     .game-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
     
     .features {
         display: flex;
         flex-direction: row;
-        gap: 15px;
+        gap: 10px;
         overflow-x: auto;
         padding-bottom: 10px;
         width: 100%;
@@ -692,8 +693,9 @@ body.show-welcome #frame {
         display: none;
     }
     .feature {
-        min-width: 140px;
-        flex: 0 0 auto;
+        min-width: 130px;
+        padding: 12px;
+        font-size: 0.8rem;
     }
 
     .modal-content {
@@ -702,7 +704,7 @@ body.show-welcome #frame {
     }
     
     .welcome-content {
-        padding: 30px 20px;
+        padding: 25px 20px;
     }
     
     .game-title {
@@ -722,6 +724,7 @@ body.show-welcome #frame {
 /* Prevent horizontal scroll on all screens */
 body, html {
     overflow-x: hidden !important;
+    max-width: 100vw;
 }
 
 /* Responsive text sizing */
@@ -777,7 +780,21 @@ body, html {
     }
     
     .game-container {
-        padding-bottom: 110px; /* More space for nav + ad on small screens */
+        padding-bottom: 140px; /* More space for mobile */
+    }
+    
+    .bottom-nav {
+        bottom: 45px; /* Adjust for mobile ad height */
+        padding: 8px 6px;
+        min-height: 56px;
+    }
+    
+    .nav-label {
+        font-size: 0.75rem;
+    }
+    
+    .nav-icon {
+        font-size: 1.2rem;
     }
     
     .bottom-nav {
@@ -867,14 +884,18 @@ body, html {
 /* --- Responsive adjustments for mobile --- */
 @media (max-width: 600px) {
     .game-container {
-        padding-bottom: 110px; /* More space for nav + ad on small screens */
+        padding-bottom: 140px; /* More space for mobile */
     }
     .bottom-nav {
-        font-size: 0.9rem;
-        min-height: 54px;
+        bottom: 45px; /* Adjust for mobile ad height */
+        padding: 8px 6px;
+        min-height: 56px;
     }
     .nav-label {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+    }
+    .nav-icon {
+        font-size: 1.2rem;
     }
 }
 
@@ -889,5 +910,13 @@ body, html {
     .nav-button {
         min-height: 48px;
         max-width: 80px;
+    }
+}
+
+/* Touch targets for mobile */
+@media (max-width: 767px) {
+    .start-button, .load-button {
+        min-height: 48px;
+        padding: 15px 20px;
     }
 }

@@ -331,17 +331,93 @@ class GameEngine {
                     timer: 2000,
                     showConfirmButton: false
                 }).then(() => {
-                    // Return to welcome screen
-                    document.getElementById('game-container').style.display = 'none';
-                    document.getElementById('welcome-screen').style.display = 'flex';
-                    
-                    // Stop the game loop
+                    // Stop the game loop first
                     if (this.gameLoopInterval) {
                         clearInterval(this.gameLoopInterval);
                         this.gameLoopInterval = null;
                     }
+                    
+                    // Return to welcome screen
+                    document.getElementById('game-container').style.display = 'none';
+                    document.getElementById('welcome-screen').style.display = 'flex';
+                    document.body.classList.add('show-welcome');
+                    
+                    // CRITICAL: Check for save and show continue button
+                    this.checkAndShowContinueButton();
+                    
+                    // Re-setup welcome screen event listeners if needed
+                    this.setupWelcomeScreenFromExit();
                 });
             }
+        });
+    }
+
+    // NEW: Helper method to check for saves and show continue button
+    checkAndShowContinueButton() {
+        // Use the global function instead of local logic
+        if (window.checkForExistingSave) {
+            window.checkForExistingSave();
+        } else {
+            // Fallback if global function isn't available
+            const hasSave = localStorage.getItem('streetHustleSave_v1');
+            const continueButton = document.getElementById('load-game');
+            if (hasSave && continueButton) {
+                continueButton.style.display = 'block';
+                console.log('Continue button shown - save file found');
+            }
+        }
+    }
+
+    // NEW: Setup welcome screen when returning from exit
+    setupWelcomeScreenFromExit() {
+        // Remove any existing event listeners to prevent duplicates
+        const startButton = document.getElementById('start-game');
+        const continueButton = document.getElementById('load-game');
+        
+        if (startButton) {
+            // Clone button to remove existing event listeners
+            const newStartButton = startButton.cloneNode(true);
+            startButton.parentNode.replaceChild(newStartButton, startButton);
+            
+            // Add fresh event listener
+            newStartButton.addEventListener('click', () => {
+                localStorage.removeItem('streetHustleSave_v1');
+                this.restartGameFromWelcome();
+            });
+        }
+        
+        if (continueButton) {
+            // Clone button to remove existing event listeners
+            const newContinueButton = continueButton.cloneNode(true);
+            continueButton.parentNode.replaceChild(newContinueButton, continueButton);
+            
+            // Add fresh event listener
+            newContinueButton.addEventListener('click', () => {
+                this.restartGameFromWelcome();
+            });
+        }
+    }
+
+    // NEW: Restart game from welcome screen (used by both start and continue)
+    restartGameFromWelcome() {
+        document.getElementById('welcome-screen').style.display = 'none';
+        document.getElementById('game-container').style.display = 'flex';
+        document.body.classList.remove('show-welcome');
+        
+        // Reinitialize the game
+        this.init().then(() => {
+            // Restart game systems
+            window.eventManager = new EventManager(this);
+            window.adviceService = new AdviceService(this);
+            
+            // Recreate hustle cards
+            window.createAllHustleCards();
+            
+            // Start game systems
+            window.eventManager.start();
+            this.startGameLoop(window.renderUI);
+            
+            console.log('Game restarted from welcome screen');
         });
     }
 

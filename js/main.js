@@ -8,10 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
     setupWelcomeScreen();
 });
 
+// Make this function globally accessible
+window.checkForExistingSave = checkForExistingSave;
+
 function checkForExistingSave() {
     const hasSave = localStorage.getItem('streetHustleSave_v1');
-    if (hasSave) {
-        document.getElementById('load-game').style.display = 'block';
+    const continueButton = document.getElementById('load-game');
+    if (hasSave && continueButton) {
+        continueButton.style.display = 'block';
+        console.log('Continue button shown - save found');
     }
 }
 
@@ -86,7 +91,7 @@ function createAllHustleCards() {
 }
 
 function setupEventListeners() {
-    // Direct button event listeners (removed save-game)
+    // Direct button event listeners
     document.getElementById('reset-game').addEventListener('click', () => gameEngine.resetGame());
     document.getElementById('get-advice').addEventListener('click', () => adviceService.getAdvice());
     document.getElementById('total-earnings').addEventListener('click', () => gameEngine.showEarningsStats());
@@ -104,3 +109,9 @@ function renderUI() {
         hustleCardInstances[id].render();
     }
 }
+
+// Make key functions globally accessible for exitGame()
+window.createAllHustleCards = createAllHustleCards;
+window.renderUI = renderUI;
+window.EventManager = EventManager;
+window.AdviceService = AdviceService;
